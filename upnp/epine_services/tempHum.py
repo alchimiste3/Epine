@@ -1,0 +1,100 @@
+# tempHum.py
+
+import grovepi
+
+import logging
+from threading import Thread
+import time
+import threading
+from twisted.internet import reactor
+from pyupnp.event import EventProperty
+from pyupnp.device import Device, DeviceIcon
+from pyupnp.logr import Logr
+from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
+from pyupnp.ssdp import SSDP
+from pyupnp.upnp import UPnP
+
+import os
+import glob
+import time
+
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+
+DHT_SENSOR_TYPE = 0
+DHT_SENSOR_PIN = 4
+MINUTES_BETWEEN_READS = 1
+
+
+def isFloat(string):
+	try:
+		float(string)
+		return True
+	except ValueError:
+		return False
+
+
+def read_tempHum():
+	try:
+		# [temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+		temp_c = 10.0
+		hum = 10.0
+
+		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
+			salut = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
+			return salut
+
+	except IOError:
+		return ("Error")
+
+	time.sleep(60*MINUTES_BETWEEN_READS)
+
+
+class TempHumService(Service):
+	version = (1, 0)
+	serviceType = "urn:schemas-upnp-org:service:TempHumService:1"
+	serviceId = "urn:upnp-org:serviceId:TempHumService"
+
+	actions = {
+		'GetTempHum': [
+			ServiceActionArgument('TempHum','out','TempHum')
+		]
+	}
+	
+	stateVariables = [
+		# Variables
+		ServiceStateVariable('TempHum','string',sendEvents=True)	,	
+		ServiceStateVariable('ListeningTempHum','boolean',sendEvents=True)
+
+	]
+		
+	state=EventProperty('ListeningTempHum')
+	tempHum=EventProperty('TempHum')
+
+	@register_action('GetTempHum')
+	def getState(self):
+		return {
+			'TempHum' : str(read_tempHum())
+		}
+		
+	def listen_to_tempHum_sensor(self, s):
+		print "Listening for tempHum sensor values"
+		while True:
+			try:
+				self.tempHum = read_tempHum()
+				time.sleep(3)
+			except IOError as e:
+				print "I/O error({0}): {1}".format(e.errno, e.strerror)
+				time.sleep(0.5)
+		return
+		
+		
+	def startListening(self):
+		self.state=True
+		
+		self.thread = threading.Thread(target=TempHumService.listen_to_tempHum_sensor, args = (self,0))
+		self.thread.daemon = True
+		self.thread.start();
+		return {
+			'ListeningTempHum':True
+		}
