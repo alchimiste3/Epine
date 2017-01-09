@@ -34,8 +34,8 @@ grovepi.pinMode(light_sensor,"INPUT")
 def read_lum():
 	try:
 		# Get sensor value
-		# sensor_value = grovepi.analogRead(light_sensor)
-		sensor_value = 50
+		sensor_value = grovepi.analogRead(light_sensor)
+		#sensor_value = 50
 
 		# Calculate resistance of sensor in K
 		resistance = (float)(1023 - sensor_value) * 10 / sensor_value

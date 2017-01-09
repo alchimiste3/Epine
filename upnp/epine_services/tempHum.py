@@ -16,7 +16,6 @@ from pyupnp.upnp import UPnP
 
 import os
 import glob
-import time
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -36,7 +35,8 @@ def isFloat(string):
 
 def read_tempHum():
 	try:
-		# [temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+		#[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+
 		temp_c = 10.0
 		hum = 10.0
 
