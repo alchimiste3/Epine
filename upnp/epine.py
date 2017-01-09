@@ -15,6 +15,8 @@ from pyupnp.ssdp import SSDP
 from pyupnp.upnp import UPnP
 from epine_services.luminosite import LuminositeService
 from epine_services.tempHum import TempHumService
+from epine_services.hum import HumService
+from epine_services.pression import PressionService
 
 import grovepi
 from grovepi import *
@@ -33,18 +35,21 @@ class EpineDevice(Device):
 
         self.luminositeService = LuminositeService()
         self.tempHumService = TempHumService()
-
-
+        self.humService = HumService()
+        self.pressionService = PressionService()
 
         
         self.services = [
             self.luminositeService,
             self.tempHumService,
+            self.humService,
+            self.pressionService,
         ]
 
         self.luminositeService.startListening()
         self.tempHumService.startListening()
-
+        self.humService.startListening()
+        self.pressionService.startListening()
         
         self.icons = [DeviceIcon('image/png', 32, 32, 24,'./index.png')]
 

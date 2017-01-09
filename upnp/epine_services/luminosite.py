@@ -26,11 +26,6 @@ light_sensor = 0
 grovepi.pinMode(light_sensor,"INPUT")
 
 
-#base_dir = '/sys/bus/w1/devices/'
-#device_folder = glob.glob(base_dir + '28*')[0]
-#device_file = device_folder + '/w1_slave'
-
-
 def read_lum():
 	try:
 		# Get sensor value
@@ -40,13 +35,12 @@ def read_lum():
 		# Calculate resistance of sensor in K
 		resistance = (float)(1023 - sensor_value) * 10 / sensor_value
 
-		salut = ("sensor_value = %d resistance =%.2f" %(sensor_value,  resistance))
-		return salut
+		donnees = ("sensor_value = %d resistance =%.2f" %(sensor_value,  resistance))
+		return donnees
 		time.sleep(.5)
 
 	except IOError:
-		return "Error"
-		# print ("Error")
+		return "Error Lum"
 
 class LuminositeService(Service):
 	version = (1, 0)

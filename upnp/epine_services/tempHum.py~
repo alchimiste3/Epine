@@ -35,19 +35,17 @@ def isFloat(string):
 
 def read_tempHum():
 	try:
-		print("fffffffffffffffffffffffffffffffffff")
-		print("Salut %d " %(grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)))
-		[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+		#[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
 
-		#temp_c = 10.0
-		#hum = 10.0
+		temp_c = 10.0
+		hum = 10.0
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
 			salut = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
 			return salut
 
 	except IOError:
-		return ("Error")
+		return ("Error TempHum")
 
 	time.sleep(60*MINUTES_BETWEEN_READS)
 

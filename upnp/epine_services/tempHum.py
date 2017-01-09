@@ -41,11 +41,11 @@ def read_tempHum():
 		hum = 10.0
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
-			salut = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
-			return salut
+			donnees = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
+			return donnees
 
 	except IOError:
-		return ("Error")
+		return ("Error TempHum")
 
 	time.sleep(60*MINUTES_BETWEEN_READS)
 
