@@ -1,0 +1,99 @@
+# distance.py
+
+import grovepi
+import smbus
+import RPi.GPIO as GPIO
+
+import logging
+from threading import Thread
+import time
+import threading
+from twisted.internet import reactor
+from pyupnp.event import EventProperty
+from pyupnp.device import Device, DeviceIcon
+from pyupnp.logr import Logr
+from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
+from pyupnp.ssdp import SSDP
+from pyupnp.upnp import UPnP
+from test.threadRead import threadRead
+
+import os
+import glob
+import time
+
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+
+sensor = 3
+
+def read_distance():
+	try:
+		donnees = "Bonjour"
+	# Sensor returns LOW and onboard LED lights up when the
+	# received infrared light intensity exceeds the calibrated level
+		if grovepi.digitalRead(sensor) == 0:
+			return ("found something")
+		else:
+			return ("nothing")
+	 
+		time.sleep(.5)
+ 
+	except IOError:
+		return "Error distance"
+
+class DistanceService(Service):
+	version = (1, 0)
+	serviceType = "urn:schemas-upnp-org:service:DistanceService:1"
+	serviceId = "urn:upnp-org:serviceId:DistanceService"
+
+	actions = {
+		'GetDistance': [
+			ServiceActionArgument('Distance','out','Distance')
+		]
+	}
+	
+	stateVariables = [
+		# Variables
+		ServiceStateVariable('Distance','string',sendEvents=True)	,	
+		ServiceStateVariable('ListeningDistance','boolean',sendEvents=True)
+
+	]
+		
+	state=EventProperty('ListeningDistance')
+	distance=EventProperty('Distance')
+
+	@register_action('GetDistance')
+	def getState(self):
+		return {
+			'Distance' : str(read_distance())
+		}
+		
+	def listen_to_distance_sensor(self, s):
+		print "Listening for distance sensor values"
+		while True:
+			print("distance a pris le mutex\n");
+			threadRead.mutex1.acquire(1)
+			try:
+				print "J'entre dans le listen de distance\n"
+				self.distance = read_distance()
+				time.sleep(3)
+				print("distance a rendu le mutex\n");
+				threadRead.mutex1.release()
+				time.sleep(3)
+			except IOError as e:
+				print "I/O error({0}): {1}".format(e.errno, e.strerror)
+				time.sleep(0.5)
+				print("distance a rendu le mutex\n");
+				threadRead.mutex1.release()
+		return
+		
+		
+	def startListening(self):
+		self.state=True
+		
+		self.thread = threading.Thread(target=DistanceService.listen_to_distance_sensor, args = (self,0))
+		self.thread.daemon = True
+		self.thread.start();
+		return {
+			'ListeningDistance':True
+		}

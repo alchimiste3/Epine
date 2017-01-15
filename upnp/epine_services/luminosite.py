@@ -1,9 +1,8 @@
 # luminosite.py
 
 import grovepi
-
 import logging
-from threading import Thread
+from threading import Thread, Lock
 import time
 import threading
 from twisted.internet import reactor
@@ -13,6 +12,7 @@ from pyupnp.logr import Logr
 from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
 from pyupnp.ssdp import SSDP
 from pyupnp.upnp import UPnP
+from test.threadRead import threadRead
 
 import os
 import glob
@@ -20,7 +20,6 @@ import time
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
-
 
 light_sensor = 0
 grovepi.pinMode(light_sensor,"INPUT")
@@ -33,9 +32,9 @@ def read_lum():
 		#sensor_value = 50
 
 		# Calculate resistance of sensor in K
-		resistance = (float)(1023 - sensor_value) * 10 / sensor_value
+		#resistance = (float)(1023 - sensor_value) * 10 / sensor_value
 
-		donnees = ("sensor_value = %d resistance =%.2f" %(sensor_value,  resistance))
+		donnees = ("sensor_value = %d" %(sensor_value))
 		return donnees
 		time.sleep(.5)
 
@@ -43,6 +42,8 @@ def read_lum():
 		return "Error Lum"
 
 class LuminositeService(Service):
+
+	mutex = Lock()
 	version = (1, 0)
 	serviceType = "urn:schemas-upnp-org:service:LuminositeService:1"
 	serviceId = "urn:upnp-org:serviceId:LuminositeService"
@@ -72,12 +73,22 @@ class LuminositeService(Service):
 	def listen_to_lum_sensor(self, s):
 		print "Listening for lum sensor values"
 		while True:
+			print("Lum a pris le mutex\n");
+			threadRead.mutex.acquire(1)
 			try:
+				print "J'entre dans le listen de lum\n"
 				self.lum = read_lum()
+				#print read_lum()
+				time.sleep(3)
+				print("Lum a rendu le mutex\n");
+				threadRead.mutex.release()
 				time.sleep(3)
 			except IOError as e:
+				print "Erreur\n"
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
+				print("Lum a rendu le mutex\n");
+				threadRead.mutex.release()
 		return
 		
 		
@@ -90,3 +101,4 @@ class LuminositeService(Service):
 		return {
 			'ListeningLum':True
 		}
+

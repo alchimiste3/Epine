@@ -36,7 +36,8 @@ def read_pression():
 		temp = bmp.readTemperature()
 		pressure = bmp.readPressure()
 		altitude = bmp.readAltitude(101560)
-		donnees = ("temperature = %.2f C pression = %.2f hPa altitude = %.2f m" %(temp, pressure, altitude))
+		#donnees = ("temperature = %.2f C pression = %.2f hPa altitude = %.2f m" %(temp, pressure, altitude))
+		donnees = ("pression = %.2f hPa" %(pressure))
 		return donnees
 
 	except IOError:
@@ -74,6 +75,7 @@ class PressionService(Service):
 		print "Listening for pression sensor values"
 		while True:
 			try:
+				print "J'entre dans le listen de pression\n"
 				self.pression = read_pression()
 				time.sleep(3)
 			except IOError as e:

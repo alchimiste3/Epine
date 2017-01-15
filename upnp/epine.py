@@ -4,7 +4,7 @@
 
 
 import logging
-from threading import Thread
+from threading import Thread, Lock
 import time
 from twisted.internet import reactor
 from pyupnp.event import EventProperty
@@ -17,6 +17,7 @@ from epine_services.luminosite import LuminositeService
 from epine_services.tempHum import TempHumService
 from epine_services.hum import HumService
 from epine_services.pression import PressionService
+from epine_services.distance import DistanceService
 
 import grovepi
 from grovepi import *
@@ -26,7 +27,7 @@ sensor = 14     # Pin 14 is A0 Port.
 grovepi.pinMode(sensor,"INPUT")
 
 class EpineDevice(Device):
-    deviceType = 'urn:schemas-upnp-org:device:Manchon:1'
+    deviceType = 'urn:schemas-upnp-org:device:Epine:1'
     friendlyName = "The smart epine"
     
     def __init__(self):
@@ -37,6 +38,7 @@ class EpineDevice(Device):
         self.tempHumService = TempHumService()
         self.humService = HumService()
         self.pressionService = PressionService()
+        self.distanceService = DistanceService()
 
         
         self.services = [
@@ -44,12 +46,14 @@ class EpineDevice(Device):
             self.tempHumService,
             self.humService,
             self.pressionService,
+            self.distanceService,
         ]
 
         self.luminositeService.startListening()
         self.tempHumService.startListening()
         self.humService.startListening()
         self.pressionService.startListening()
+        self.distanceService.startListening()
         
         self.icons = [DeviceIcon('image/png', 32, 32, 24,'./index.png')]
 

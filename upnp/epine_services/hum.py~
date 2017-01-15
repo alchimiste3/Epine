@@ -3,7 +3,7 @@
 import grovepi
 
 import logging
-from threading import Thread
+from threading import Thread, Lock
 import time
 import threading
 from twisted.internet import reactor
@@ -13,6 +13,7 @@ from pyupnp.logr import Logr
 from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
 from pyupnp.ssdp import SSDP
 from pyupnp.upnp import UPnP
+from test.threadRead import threadRead
 
 import os
 import glob
@@ -23,7 +24,6 @@ os.system('modprobe w1-therm')
 
 
 sensor = 1
-
 
 def read_hum():
 	try:
@@ -63,18 +63,24 @@ class HumService(Service):
 	def listen_to_hum_sensor(self, s):
 		print "Listening for hum sensor values"
 		while True:
+			threadRead.mutex.acquire(1)
+			print("Hum a pris le mutex\n");
 			try:
+				print "J'entre dans le listen de hum\n"
 				self.hum = read_hum()
 				time.sleep(3)
+				print("Hum a rendu le mutex\n");
+				threadRead.mutex.release()
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
+				print("Hum a rendu le mutex\n");
+				threadRead.mutex.release()
 		return
 		
 		
 	def startListening(self):
 		self.state=True
-		
 		self.thread = threading.Thread(target=HumService.listen_to_hum_sensor, args = (self,0))
 		self.thread.daemon = True
 		self.thread.start();

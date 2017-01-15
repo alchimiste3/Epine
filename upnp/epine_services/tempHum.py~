@@ -13,6 +13,7 @@ from pyupnp.logr import Logr
 from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
 from pyupnp.ssdp import SSDP
 from pyupnp.upnp import UPnP
+from test.threadRead import threadRead
 
 import os
 import glob
@@ -35,19 +36,20 @@ def isFloat(string):
 
 def read_tempHum():
 	try:
-		#[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+		[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
 
-		temp_c = 10.0
-		hum = 10.0
+		#temp_c = 10.0
+		#hum = 10.0
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
-			salut = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
-			return salut
+			donnees = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
+			return donnees
+			time.sleep(.5)
 
 	except IOError:
 		return ("Error TempHum")
 
-	time.sleep(60*MINUTES_BETWEEN_READS)
+	#time.sleep(60*MINUTES_BETWEEN_READS)
 
 
 class TempHumService(Service):
@@ -80,12 +82,20 @@ class TempHumService(Service):
 	def listen_to_tempHum_sensor(self, s):
 		print "Listening for tempHum sensor values"
 		while True:
+			print("temphum a pris le mutex\n");
+			threadRead.mutex1.acquire(1)
 			try:
+				print "J'entre dans le listen de temphum\n"
 				self.tempHum = read_tempHum()
+				time.sleep(3)
+				print("temphum a rendu le mutex\n");
+				threadRead.mutex1.release()
 				time.sleep(3)
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
+				print("distance a rendu le mutex\n");
+				threadRead.mutex1.release()
 		return
 		
 		
