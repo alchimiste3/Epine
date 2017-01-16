@@ -1,11 +1,8 @@
 # distance.py
 
 import grovepi
-import smbus
-import RPi.GPIO as GPIO
-
 import logging
-from threading import Thread
+from threading import Thread, Lock
 import time
 import threading
 from twisted.internet import reactor
@@ -26,9 +23,9 @@ os.system('modprobe w1-therm')
 
 sensor = 3
 
+
 def read_distance():
 	try:
-		donnees = "Bonjour"
 	# Sensor returns LOW and onboard LED lights up when the
 	# received infrared light intensity exceeds the calibrated level
 		if grovepi.digitalRead(sensor) == 0:
@@ -42,6 +39,7 @@ def read_distance():
 		return "Error distance"
 
 class DistanceService(Service):
+
 	version = (1, 0)
 	serviceType = "urn:schemas-upnp-org:service:DistanceService:1"
 	serviceId = "urn:upnp-org:serviceId:DistanceService"
@@ -71,19 +69,20 @@ class DistanceService(Service):
 	def listen_to_distance_sensor(self, s):
 		print "Listening for distance sensor values"
 		while True:
-			print("distance a pris le mutex\n");
 			threadRead.mutex1.acquire(1)
+			print("Distance a pris le mutex\n");
 			try:
 				print "J'entre dans le listen de distance\n"
 				self.distance = read_distance()
 				time.sleep(3)
-				print("distance a rendu le mutex\n");
+				print("Distance a rendu le mutex\n");
 				threadRead.mutex1.release()
 				time.sleep(3)
 			except IOError as e:
+				print "Erreur\n"
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
-				print("distance a rendu le mutex\n");
+				print("Distance a rendu le mutex\n");
 				threadRead.mutex1.release()
 		return
 		
@@ -97,3 +96,4 @@ class DistanceService(Service):
 		return {
 			'ListeningDistance':True
 		}
+

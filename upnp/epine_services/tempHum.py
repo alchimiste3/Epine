@@ -82,14 +82,14 @@ class TempHumService(Service):
 	def listen_to_tempHum_sensor(self, s):
 		print "Listening for tempHum sensor values"
 		while True:
-			print("temphum a pris le mutex\n");
 			threadRead.mutex1.acquire(1)
+			print("temphum a pris le mutex\n");
 			try:
 				print "J'entre dans le listen de temphum\n"
 				self.tempHum = read_tempHum()
 				time.sleep(3)
-				print("temphum a rendu le mutex\n");
 				threadRead.mutex1.release()
+				print("temphum a rendu le mutex\n");
 				time.sleep(3)
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
