@@ -27,11 +27,14 @@ sensor = 1
 
 def read_hum():
 	try:
-		return (grovepi.analogRead(sensor))
+		donnees = grovepi.analogRead(sensor)
+		if donnees == "(Empty)":
+			donnees == -1
+		return donnees
 		time.sleep(.5)
 
 	except IOError:
-		return ("Error Hum")
+		return -1
 
 class HumService(Service):
 	version = (1, 0)
@@ -62,21 +65,36 @@ class HumService(Service):
 		
 	def listen_to_hum_sensor(self, s):
 		print "Listening for hum sensor values"
+		tmp = 10
+		tmp1 = 10
 		while True:
 			threadRead.mutex.acquire(1)
 			print("Hum a pris le mutex\n");
 			try:
+				tmp1 = read_hum()
 				print "J'entre dans le listen de hum\n"
-				self.hum = read_hum()
-				time.sleep(3)
-				print("Hum a rendu le mutex\n");
+				if tmp1 > 2000 or tmp1 == -1:
+					print "Valeur non changee erreur\n"
+
+				if tmp1 > (tmp - 50) or tmp1 < (tmp + 50):
+					print "Valeur non changee trop proche\n"
+
+				if tmp1 < (tmp - 50) or tmp1 > (tmp + 50):
+					self.hum = tmp1
+					tmp = tmp1
+
+
+
+				#print read_lum()
+				time.sleep(5)
 				threadRead.mutex.release()
+				print("Hum a rendu le mutex\n");
 				time.sleep(3)
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
-				print("Hum a rendu le mutex\n");
 				threadRead.mutex.release()
+				print("Hum a rendu le mutex\n");
 		return
 		
 		

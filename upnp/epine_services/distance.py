@@ -74,16 +74,16 @@ class DistanceService(Service):
 			try:
 				print "J'entre dans le listen de distance\n"
 				self.distance = read_distance()
-				time.sleep(3)
+				time.sleep(5)
 				threadRead.mutex1.release()
 				print("Distance a rendu le mutex\n");
-				time.sleep(3)
+				time.sleep(5)
 			except IOError as e:
 				print "Erreur\n"
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
-				print("Distance a rendu le mutex\n");
 				threadRead.mutex1.release()
+				print("Distance a rendu le mutex\n");
 		return
 		
 		

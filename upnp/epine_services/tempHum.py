@@ -43,11 +43,13 @@ def read_temp():
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
 			donnees = (temp_c)
+			if donnees is None:
+				donnees = -1
 			return donnees
 			time.sleep(.5)
 
 	except IOError:
-		return ("Error TempHum")
+		return -1
 
 def read_hum():
 	try:
@@ -58,11 +60,13 @@ def read_hum():
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
 			donnees = (hum)
+			if donnees is None:
+				donnees = -1
 			return donnees
 			time.sleep(.5)
 
 	except IOError:
-		return ("Error TempHum")
+		return -1
 
 
 	#time.sleep(60*MINUTES_BETWEEN_READS)
@@ -102,16 +106,33 @@ class TempHumService(Service):
 		
 	def listen_to_tempHum_sensor(self, s):
 		print "Listening for tempHum sensor values"
+		tmp = 10
+		tmp1 = 10
+		tmp2 = 10
 		while True:
 			threadRead.mutex1.acquire(1)
 			print("temphum a pris le mutex\n");
 			try:
-				print "J'entre dans le listen de temphum\n"
-				self.temp = read_temp()
-				self.humi = read_hum()
-				time.sleep(3)
+				tmp1 = read_hum()
+				tmp2 = read_temp()
+				print "J'entre dans le listen de tempHum\n"
+				if tmp1 == -1 or tmp2 == -1 or tmp1 is None or tmp2 is None:
+					print "NONEEEEEEEEEEEEE\n"
+				
+				elif tmp1 > (tmp - 50) or tmp1 < (tmp + 50) :
+					print "Valeur non changee trop proche\n"
+
+				elif tmp1 < (tmp - 50) or tmp1 > (tmp + 50) :
+					self.hum = tmp1
+					tmp = tmp1
+					self.tmp = tmp2
+
+
+
+				#print read_lum()
+				time.sleep(5)
 				threadRead.mutex1.release()
-				print("temphum a rendu le mutex\n");
+				print("Hum a rendu le mutex\n");
 				time.sleep(3)
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)

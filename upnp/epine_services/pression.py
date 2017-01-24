@@ -41,7 +41,7 @@ def read_pression():
 		return donnees
 
 	except IOError:
-		return "Error Pression"
+		return -1
 		# print ("Error")
 
 class PressionService(Service):
@@ -73,11 +73,24 @@ class PressionService(Service):
 		
 	def listen_to_pression_sensor(self, s):
 		print "Listening for pression sensor values"
+		tmp = 10
+		tmp1 = 10
 		while True:
 			try:
+
+				tmp1 = read_pression()
 				print "J'entre dans le listen de pression\n"
-				self.pression = read_pression()
-				time.sleep(3)
+				if tmp1 > 2000 or tmp1 == -1:
+					print "Valeur non changee erreur\n"
+
+				if tmp1 > (tmp - 50) or tmp1 < (tmp + 50):
+					print "Valeur non changee trop proche\n"
+
+				if tmp1 < (tmp - 50) or tmp1 > (tmp + 50):
+					self.pression = tmp1
+					tmp = tmp1
+
+				time.sleep(5)
 			except IOError as e:
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)

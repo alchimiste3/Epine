@@ -34,12 +34,12 @@ def read_lum():
 		# Calculate resistance of sensor in K
 		#resistance = (float)(1023 - sensor_value) * 10 / sensor_value
 
-		donnees = ("sensor_value = %d" %(sensor_value))
+		donnees = (sensor_value)
 		return donnees
 		time.sleep(.5)
 
 	except IOError:
-		return "Error Lum"
+		return -1
 
 class LuminositeService(Service):
 
@@ -72,23 +72,37 @@ class LuminositeService(Service):
 		
 	def listen_to_lum_sensor(self, s):
 		print "Listening for lum sensor values"
+		tmp = 10
+		tmp1 = 10
 		while True:
-			print("Lum a pris le mutex\n");
 			threadRead.mutex.acquire(1)
+			print("Lum a pris le mutex\n");
 			try:
+				tmp1 = read_lum()
 				print "J'entre dans le listen de lum\n"
-				self.lum = read_lum()
+				if tmp1 == 0 or tmp1 > 2000 or tmp == -1:
+					print "Valeur non changee erreur\n"
+
+				if tmp1 > (tmp - 50) or tmp1 < (tmp + 50):
+					print "Valeur non changee trop proche\n"
+
+				if tmp1 < (tmp - 50) or tmp1 > (tmp + 50):
+					self.lum = tmp1
+					tmp = tmp1
+
+
+
 				#print read_lum()
-				time.sleep(3)
-				print("Lum a rendu le mutex\n");
+				time.sleep(5)
 				threadRead.mutex.release()
+				print("Lum a rendu le mutex\n");
 				time.sleep(3)
 			except IOError as e:
 				print "Erreur\n"
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)
 				time.sleep(0.5)
-				print("Lum a rendu le mutex\n");
 				threadRead.mutex.release()
+				print("Lum a rendu le mutex\n");
 		return
 		
 		
