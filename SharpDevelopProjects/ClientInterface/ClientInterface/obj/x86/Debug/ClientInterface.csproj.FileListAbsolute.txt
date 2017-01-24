@@ -1,0 +1,14 @@
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\ClientInterface.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\ClientInterface.pdb
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\Beans.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ClientInterface.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ClientInterface.pdb
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ClientInterface.dll
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\ClientInterface.dll
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\ClientInterface.pdb
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\Beans.dll
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Dropbox\SharpDevelopProjects\ClientInterface\ClientInterface\obj\x86\Debug\ClientInterface.pdb
