@@ -29,9 +29,9 @@ def read_distance():
 	# Sensor returns LOW and onboard LED lights up when the
 	# received infrared light intensity exceeds the calibrated level
 		if grovepi.digitalRead(sensor) == 0:
-			return ("found something")
+			return true
 		else:
-			return ("nothing")
+			return false
 	 
 		time.sleep(.5)
  
@@ -52,7 +52,7 @@ class DistanceService(Service):
 	
 	stateVariables = [
 		# Variables
-		ServiceStateVariable('Distance','string',sendEvents=True)	,	
+		ServiceStateVariable('Distance','boolean',sendEvents=True)	,	
 		ServiceStateVariable('ListeningDistance','boolean',sendEvents=True)
 
 	]
@@ -75,8 +75,8 @@ class DistanceService(Service):
 				print "J'entre dans le listen de distance\n"
 				self.distance = read_distance()
 				time.sleep(3)
-				print("Distance a rendu le mutex\n");
 				threadRead.mutex1.release()
+				print("Distance a rendu le mutex\n");
 				time.sleep(3)
 			except IOError as e:
 				print "Erreur\n"

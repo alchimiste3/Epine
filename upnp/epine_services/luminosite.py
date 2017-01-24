@@ -34,7 +34,7 @@ def read_lum():
 		# Calculate resistance of sensor in K
 		#resistance = (float)(1023 - sensor_value) * 10 / sensor_value
 
-		donnees = ("sensor_value = %d" %(sensor_value))
+		donnees = (sensor_value)
 		return donnees
 		time.sleep(.5)
 

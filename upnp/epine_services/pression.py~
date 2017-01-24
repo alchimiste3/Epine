@@ -37,7 +37,7 @@ def read_pression():
 		pressure = bmp.readPressure()
 		altitude = bmp.readAltitude(101560)
 		#donnees = ("temperature = %.2f C pression = %.2f hPa altitude = %.2f m" %(temp, pressure, altitude))
-		donnees = ("temperature = %.2f C pression = %.2f hPa altitude = %.2f m" %(temp, pressure, altitude))
+		donnees = ("pression = %.2f hPa" %(pressure))
 		return donnees
 
 	except IOError:

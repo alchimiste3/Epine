@@ -34,7 +34,7 @@ def isFloat(string):
 		return False
 
 
-def read_tempHum():
+def read_temp():
 	try:
 		[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
 
@@ -42,12 +42,28 @@ def read_tempHum():
 		#hum = 10.0
 
 		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
-			donnees = ("Temperature = %.2f et Humidity = %.2f" %(temp_c, hum))
+			donnees = (temp_c)
 			return donnees
 			time.sleep(.5)
 
 	except IOError:
 		return ("Error TempHum")
+
+def read_hum():
+	try:
+		[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
+
+		#temp_c = 10.0
+		#hum = 10.0
+
+		if (isFloat(temp_c) and (isFloat(hum)) and (hum >= 0)):
+			donnees = (hum)
+			return donnees
+			time.sleep(.5)
+
+	except IOError:
+		return ("Error TempHum")
+
 
 	#time.sleep(60*MINUTES_BETWEEN_READS)
 
@@ -58,25 +74,30 @@ class TempHumService(Service):
 	serviceId = "urn:upnp-org:serviceId:TempHumService"
 
 	actions = {
-		'GetTempHum': [
-			ServiceActionArgument('TempHum','out','TempHum')
+		'GetTemp': [
+			ServiceActionArgument('Temp','out','Temp')
+		],
+		'GetHumi': [
+			ServiceActionArgument('Humi','out','Humi')
 		]
 	}
 	
 	stateVariables = [
 		# Variables
-		ServiceStateVariable('TempHum','string',sendEvents=True)	,	
+		ServiceStateVariable('Temp','string',sendEvents=True),
+		ServiceStateVariable('Humi','string',sendEvents=True),
 		ServiceStateVariable('ListeningTempHum','boolean',sendEvents=True)
 
 	]
 		
 	state=EventProperty('ListeningTempHum')
-	tempHum=EventProperty('TempHum')
+	temp=EventProperty('Temp')
+	humi=EventProperty('Humi')
 
-	@register_action('GetTempHum')
+	@register_action('GetTemp')
 	def getState(self):
 		return {
-			'TempHum' : str(read_tempHum())
+			'Temp' : str(read_temp())
 		}
 		
 	def listen_to_tempHum_sensor(self, s):
@@ -86,7 +107,8 @@ class TempHumService(Service):
 			print("temphum a pris le mutex\n");
 			try:
 				print "J'entre dans le listen de temphum\n"
-				self.tempHum = read_tempHum()
+				self.temp = read_temp()
+				self.humi = read_hum()
 				time.sleep(3)
 				threadRead.mutex1.release()
 				print("temphum a rendu le mutex\n");
@@ -107,4 +129,10 @@ class TempHumService(Service):
 		self.thread.start();
 		return {
 			'ListeningTempHum':True
+		}
+
+	@register_action('GetHumi')
+	def getState(self):
+		return {
+			'Hum' : str(read_hum())
 		}

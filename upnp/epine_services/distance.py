@@ -29,9 +29,9 @@ def read_distance():
 	# Sensor returns LOW and onboard LED lights up when the
 	# received infrared light intensity exceeds the calibrated level
 		if grovepi.digitalRead(sensor) == 0:
-			return ("found something")
+			return True
 		else:
-			return ("nothing")
+			return False
 	 
 		time.sleep(.5)
  
@@ -52,7 +52,7 @@ class DistanceService(Service):
 	
 	stateVariables = [
 		# Variables
-		ServiceStateVariable('Distance','string',sendEvents=True)	,	
+		ServiceStateVariable('Distance','boolean',sendEvents=True)	,	
 		ServiceStateVariable('ListeningDistance','boolean',sendEvents=True)
 
 	]

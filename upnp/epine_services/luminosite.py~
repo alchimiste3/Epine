@@ -82,6 +82,7 @@ class LuminositeService(Service):
 				time.sleep(3)
 				print("Lum a rendu le mutex\n");
 				threadRead.mutex.release()
+				time.sleep(3)
 			except IOError as e:
 				print "Erreur\n"
 				print "I/O error({0}): {1}".format(e.errno, e.strerror)

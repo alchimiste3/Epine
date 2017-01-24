@@ -36,7 +36,7 @@ class EpineDevice(Device):
 
         self.luminositeService = LuminositeService()
         self.tempHumService = TempHumService()
-        #self.humService = HumService()
+        self.humService = HumService()
         self.pressionService = PressionService()
         self.distanceService = DistanceService()
 
@@ -44,14 +44,14 @@ class EpineDevice(Device):
         self.services = [
             self.luminositeService,
             self.tempHumService,
-            #self.humService,
+            self.humService,
             self.pressionService,
             self.distanceService,
         ]
 
         self.luminositeService.startListening()
         self.tempHumService.startListening()
-        #self.humService.startListening()
+        self.humService.startListening()
         self.pressionService.startListening()
         self.distanceService.startListening()
         
