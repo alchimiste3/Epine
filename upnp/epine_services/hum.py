@@ -76,10 +76,10 @@ class HumService(Service):
 				if tmp1 > 2000 or tmp1 == -1:
 					print "Valeur non changee erreur\n"
 
-				if tmp1 > (tmp - 50) or tmp1 < (tmp + 50):
+				if tmp1 > (tmp - 50) and tmp1 < (tmp + 50):
 					print "Valeur non changee trop proche\n"
 
-				if tmp1 < (tmp - 50) or tmp1 > (tmp + 50):
+				if (tmp1 < (tmp - 50) or tmp1 > (tmp + 50)) and tmp1 != -1:
 					self.hum = tmp1
 					tmp = tmp1
 

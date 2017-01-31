@@ -12,12 +12,13 @@ from pyupnp.device import Device, DeviceIcon
 from pyupnp.logr import Logr
 from pyupnp.services import register_action, Service, ServiceActionArgument, ServiceStateVariable
 from pyupnp.ssdp import SSDP
-from pyupnp.upnp import UPnP
+#from pyupnp.upnp import UPnP
 from epine_services.luminosite import LuminositeService
 from epine_services.tempHum import TempHumService
 from epine_services.hum import HumService
 from epine_services.pression import PressionService
 from epine_services.distance import DistanceService
+from epine_services.upnp import UPnP 
 
 import grovepi
 from grovepi import *
