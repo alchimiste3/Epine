@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\serveurAlgo.pdb
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\Beans.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\serveurAlgo.dll
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\serveurAlgo.pdb
+C:\Users\Quentin\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\serveurAlgo.dll
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\serveurAlgo.dll
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\serveurAlgo.pdb
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\bin\Debug\Beans.dll
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\serveurAlgo.dll
+C:\Users\user\Desktop\SharpDevelopProjects\serveurAlgo\serveurAlgo\obj\x86\Debug\serveurAlgo.pdb
