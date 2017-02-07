@@ -1,0 +1,17 @@
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+#epine-logo {
+    width: 20em;
+    height: auto;
+    margin: -4em;
+    padding: 0;
+    display:flex;
+    margin-left:auto;
+    margin-right:auto;
+}
