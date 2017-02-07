@@ -135,13 +135,6 @@ namespace WComp.Beans
 		}
 		
 		
-		private bool testVal = false;
-		public bool TestVal {
-			get { return testVal; }
-			set {
-				testVal = value;
-			}
-		}
 		
 		private int testVal2 = 0;
 		public int TestVal2 {
@@ -158,12 +151,10 @@ namespace WComp.Beans
 		
 
 		public bool getEtatArrosage() {
-			testVal = true;
 			return ConditionArrosage();
 		}
 		
 		public bool getEtatTonte() {
-			testVal = true;
 			return ConditionTonte();
 		}
 		
@@ -194,9 +185,6 @@ namespace WComp.Beans
 		
 
 		private bool ConditionArrosage(){
-			testVal = true;
-			// TODO a revoir
-			
 			
 			bool humTerreIns = false;
 			// Verification humidite de la terre
@@ -215,7 +203,7 @@ namespace WComp.Beans
 					return humTerreIns;  // Si = 2, alors on arrose uniquement si la terre  n'est pas assez humide
 				case 3:
 					testVal2 = 3;
-					return humTerreIns && true; // Si = 3, idem
+					return humTerreIns; // Si = 3, idem
 				case 4:
 					testVal2 = 4;
 					return true; // Si = 4, alors on arrose toujours par précotion meme si la terre est assez humide
@@ -230,10 +218,6 @@ namespace WComp.Beans
 			return distance;
 		}
 		
-		
-		/// <summary>
-		/// Gestion de la meteo
-		/// </summary>
 		
 		private void AddReleverMeteo(){
 			
@@ -252,12 +236,6 @@ namespace WComp.Beans
 		}
 		
 	
-		/// <summary>
-		/// Indique le type de temps enregistrer avec un deg de favorabilite pour les plantes
-		/// Si l'un des seuil est depasse, alors c'est une reson de plus d'arroser
-		/// </summary>
-		/// <param name="releve"></param>
-		/// <returns></returns>
 		public int getTypeMeteoLocal(Releve releve){
 			
 			int res = 0;

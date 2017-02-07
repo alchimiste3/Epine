@@ -1,0 +1,17 @@
+Intro : présentation équipe : Nous somme equipe ....
+
+	Les noms afficher + logo polytech
+
+présentation projet : Notre projet Epine ....
+	Image de l'objet
+
+présentation capteur : Les 5 capteurs ...
+
+	Image capteurs en détaille
+
+présentation soft : Python, wcomp, Rest 
+	Image de wcomp, 
+
+	Video du code python (montrer les fichier)
+
+	Image du site web

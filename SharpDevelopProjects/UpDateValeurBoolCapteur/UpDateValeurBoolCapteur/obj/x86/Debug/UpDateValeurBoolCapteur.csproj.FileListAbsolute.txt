@@ -1,0 +1,6 @@
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\bin\Debug\UpDateValeurBoolCapteur.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\bin\Debug\UpDateValeurBoolCapteur.pdb
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\bin\Debug\Beans.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\obj\x86\Debug\UpDateValeurBoolCapteur.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurBoolCapteur\UpDateValeurBoolCapteur\obj\x86\Debug\UpDateValeurBoolCapteur.pdb

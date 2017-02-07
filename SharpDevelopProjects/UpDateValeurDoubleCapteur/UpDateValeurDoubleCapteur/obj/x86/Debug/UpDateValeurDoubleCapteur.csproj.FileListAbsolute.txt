@@ -1,0 +1,6 @@
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\bin\Debug\UpDateValeurDoubleCapteur.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\bin\Debug\UpDateValeurDoubleCapteur.pdb
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\bin\Debug\Beans.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\obj\x86\Debug\UpDateValeurDoubleCapteur.dll
+C:\Users\Quentin\Dropbox\SharpDevelopProjects\UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur\obj\x86\Debug\UpDateValeurDoubleCapteur.pdb

@@ -1,0 +1,18 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+# SharpDevelop 3.2.1.6466
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpDateValeurDoubleCapteur", "UpDateValeurDoubleCapteur\UpDateValeurDoubleCapteur.csproj", "{133873E8-F317-4DB4-9D91-505E85374D0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{133873E8-F317-4DB4-9D91-505E85374D0C}.Debug|x86.Build.0 = Debug|x86
+		{133873E8-F317-4DB4-9D91-505E85374D0C}.Debug|x86.ActiveCfg = Debug|x86
+		{133873E8-F317-4DB4-9D91-505E85374D0C}.Release|x86.Build.0 = Release|x86
+		{133873E8-F317-4DB4-9D91-505E85374D0C}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+EndGlobal
