@@ -37,7 +37,7 @@ def isFloat(string):
 def read_temp():
 	try:
 		[temp_c,hum] = grovepi.dht(DHT_SENSOR_PIN,DHT_SENSOR_TYPE)
-
+		print "j'entre dans le read_temp"
 		#temp_c = 10.0
 		#hum = 10.0
 
@@ -116,20 +116,19 @@ class TempHumService(Service):
 				tmp1 = read_hum()
 				tmp2 = read_temp()
 				print "J'entre dans le listen de tempHum\n"
-				if tmp1 == -1 or tmp2 == -1 or tmp1 is None or tmp2 is None:
-					print "NONEEEEEEEEEEEEE\n"
+				#if tmp1 == -1 or tmp2 == -1 or tmp1 is None or tmp2 is None:
+				#	print "NONEEEEEEEEEEEEE\n"
 				
-				elif tmp1 > (tmp - 50) or tmp1 < (tmp + 50) :
-					print "Valeur non changee trop proche\n"
+				#elif tmp1 > (tmp - 50) or tmp1 < (tmp + 50) :
+				#	print "Valeur non changee trop proche\n"
 
-				elif tmp1 < (tmp - 50) or tmp1 > (tmp + 50) :
-					self.hum = tmp1
-					tmp = tmp1
-					self.tmp = tmp2
+				#elif tmp1 < (tmp - 50) or tmp1 > (tmp + 50) :
+				self.humi = tmp1
+				tmp = tmp1
+				self.temp = tmp2
 
 
 
-				#print read_lum()
 				time.sleep(5)
 				threadRead.mutex1.release()
 				print("Hum a rendu le mutex\n");

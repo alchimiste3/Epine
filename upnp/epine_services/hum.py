@@ -86,7 +86,7 @@ class HumService(Service):
 
 
 				#print read_lum()
-				time.sleep(5)
+				time.sleep(10)
 				threadRead.mutex.release()
 				print("Hum a rendu le mutex\n");
 				time.sleep(3)

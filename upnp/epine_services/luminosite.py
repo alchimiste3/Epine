@@ -86,14 +86,14 @@ class LuminositeService(Service):
 				if tmp1 > (tmp - 50) and tmp1 < (tmp + 50):
 					print "Valeur non changee trop proche\n"
 
-				if (tmp1 < (tmp - 50) or tmp1 > (tmp + 50)) and tmp != -1:
+				if (tmp1 < (tmp - 50) or tmp1 > (tmp + 50)) and tmp1 != -1:
 					self.lum = tmp1
 					tmp = tmp1
 
 
 
 				#print read_lum()
-				time.sleep(5)
+				time.sleep(10)
 				threadRead.mutex.release()
 				print("Lum a rendu le mutex\n");
 				time.sleep(3)
