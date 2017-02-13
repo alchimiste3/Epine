@@ -1,8 +1,31 @@
-1 ) inclure tout les bean du dossier MesBean dans les bons dossiers
+Lancement du code
 
-	- Newtonsoft.Json.dll dans SharpDevelop/3.0/Beans
-	- Le reste des beans dans Documents/WComp.NET/Beans
+Installer Grove Pi
+-> git clone https://github.com/DexterInd/GrovePi.git
 
-2 ) Ouvrire un nouveau Container dans IDE, Import le fichier testBean22.wcc.
+Copier le dossier upnp sur la raspberry
+-> scp -rp chemin_vers_upnp/upnp pi@nom.local:~
 
-et c'est bon normalement !!!
+Aller dans upnp
+-> cd upnp
+
+Lancer le service
+-> sudo python grovepi.py
+
+
+Branchement des capteurs
+
+Capteur tempétature et humidité:
+-> branché sur le port D4
+
+Capteur luminosité:
+-> branché sur le port A0
+
+Capteur humidité de la terre:
+-> branché sur le port A1
+
+Capteur de pression:
+-> branché sur un des ports I2C
+
+Capteur de distance:
+-> branché sur le port D3

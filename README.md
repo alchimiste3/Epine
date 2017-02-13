@@ -1,5 +1,10 @@
 # Epine
 
+Auteurs:
+	-> Quentin Laborde
+	-> Shafiq Daniel Bin Sabari 
+	-> Mathieu Stackler
+
 Les trucs a faire : 
 
 
@@ -9,6 +14,6 @@ Les trucs a faire :
 
 -Faire un README pour chaque partie pour expliquer comment en deploy
       wcomp : done
-      python rasp : ?
+      python rasp : done
       python rest : ?
 
