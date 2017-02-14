@@ -1,0 +1,7 @@
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\bin\Debug\Weather.dll
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\bin\Debug\Weather.pdb
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\bin\Debug\Beans.dll
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\obj\x86\Debug\Weather.dll
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\obj\x86\Debug\Weather.pdb
+C:\Users\user\Documents\SharpDevelop Projects\Weather\Weather\bin\Debug\Newtonsoft.Json.dll
