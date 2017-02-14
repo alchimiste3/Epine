@@ -1,6 +1,0 @@
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\bin\Debug\MessagingBean.pdb
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\bin\Debug\Beans.dll
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\obj\x86\Debug\MessagingBean.dll
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\obj\x86\Debug\MessagingBean.pdb
-C:\Users\shafiq\Documents\SharpDevelop Projects\MessagingBean\MessagingBean\bin\Debug\MessagingBean.dll
